@@ -1,0 +1,5 @@
+{
+  "metric": "Cold Start",
+  "value_ms": 1.18,
+  "description": "Latencia inicial de la primera request HTTP con servicios activos"
+}

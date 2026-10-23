@@ -1,0 +1,7 @@
+{
+  "metric": "Throughput",
+  "avg_requests_per_sec": 4060.8,
+  "max_requests_per_sec": 4799,
+  "total_requests": 41000,
+  "duration_seconds": 10.03
+}

@@ -1,0 +1,6 @@
+{
+  "metric": "Error Rate",
+  "error_rate_percentage": 0.00,
+  "failed_requests": 0,
+  "status": "Stable"
+}

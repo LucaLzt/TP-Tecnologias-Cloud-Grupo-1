@@ -1,0 +1,8 @@
+{
+  "metric": "Latency Percentiles",
+  "p50_ms": 2,
+  "p95_ms": 5,
+  "p99_ms": 7,
+  "unit": "milliseconds",
+  "tool": "autocannon"
+}
