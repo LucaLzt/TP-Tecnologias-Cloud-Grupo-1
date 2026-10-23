@@ -6,3 +6,6 @@ node_modules/
 resultados/
 *.log
 .DS_Store
+server.key
+server.crt
+backup-tp-cloud.tar.gz
