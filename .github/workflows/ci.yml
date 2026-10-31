@@ -1,16 +1,11 @@
 name: CI
 
-# Este flujo es el punto de partida, no el entregable terminado.
-# Cada grupo debe completar al menos la etapa de despliegue y justificar
-# qué hallazgos bloquean la entrega y cuáles solamente advierten.
-
 on:
   push:
     branches: [main, ivan-plataforma]
   pull_request:
   workflow_dispatch:
 
-# Permisos mínimos. El valor por defecto de GitHub es más amplio de lo necesario.
 permissions:
   contents: read
 
@@ -109,5 +104,3 @@ jobs:
       - name: Trigger Render Deploy
         run: |
           curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK }}"
-
-          
