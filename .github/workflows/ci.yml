@@ -123,7 +123,7 @@ despliegue:
     name: Desplegar en Render
     needs: imagen
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' # O cámbialo a tu rama si querés que despliegue desde otra
+    if: github.ref == 'refs/heads/ivan-plataforma'
     steps:
       - name: Trigger Render Deploy
         run: |
