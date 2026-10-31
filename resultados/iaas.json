@@ -1,0 +1,42 @@
+{
+  "medido_en": "2026-10-26T06:23:33.438Z",
+  "modelo": "iaas",
+  "url": "https://localhost/api/turnos",
+  "configuracion": {
+    "peticiones": 200,
+    "concurrencia": 8
+  },
+  "arranque_en_frio_ms": 18.7,
+  "info_despliegue": {
+    "aplicacion": "turnero",
+    "version": "1.0.0",
+    "modelo_de_servicio": "iaas",
+    "adaptador_http": "node:http",
+    "adaptador_datos": "postgres",
+    "instancia": "codespaces-iaas",
+    "region": "us-east",
+    "arrancado_hace_ms": 5018150,
+    "hora_servidor": "2026-10-26T06:23:32.954Z",
+    "grupo": "01"
+  },
+  "resumen": {
+    "peticiones": 200,
+    "exitosas": 200,
+    "fallidas": 0,
+    "tasa_error_pct": 0,
+    "min_ms": 3.8,
+    "p50_ms": 11.8,
+    "p95_ms": 38.8,
+    "p99_ms": 81.1,
+    "max_ms": 97.1,
+    "promedio_ms": 15.4,
+    "codigos": {
+      "200": 200
+    },
+    "instancias": [
+      "codespaces-iaas"
+    ],
+    "duracion_s": 0.39,
+    "peticiones_por_segundo": 513.4
+  }
+}
