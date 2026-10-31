@@ -6,7 +6,7 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [main, ivan-plataforma]
   pull_request:
   workflow_dispatch:
 
@@ -36,8 +36,6 @@ jobs:
         run: npm test
 
       - name: Auditoría de dependencias
-        # No bloquea la entrega todavía: primero hay que ver qué informa.
-        # Decidir si pasa a bloqueante es parte del entregable 5.3.
         run: npm audit --audit-level=high
         continue-on-error: true
 
@@ -56,9 +54,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Los ejecutores de GitHub comparten direcciones IP y el límite de descargas
-      # anónimas de Docker Hub es de 10 por hora. Autenticarse con una cuenta
-      # gratuita lo sube a 100 y evita fallos intermitentes que parecen magia.
       - name: Iniciar sesión en Docker Hub
         if: ${{ env.DOCKERHUB_USUARIO != '' }}
         env:
@@ -92,11 +87,11 @@ jobs:
           image-ref: turnero:${{ github.sha }}
           format: table
           severity: CRITICAL,HIGH
-          exit-code: '0'   # cambiar a '1' para que un hallazgo grave frene la entrega
+          exit-code: '0'
           ignore-unfixed: true
 
       - name: Publicar en ghcr.io
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/ivan-plataforma' || github.ref == 'refs/heads/main'
         uses: docker/build-push-action@v6
         with:
           context: .
@@ -105,21 +100,7 @@ jobs:
             ghcr.io/${{ github.repository }}:${{ github.sha }}
             ghcr.io/${{ github.repository }}:latest
 
-  # ---------------------------------------------------------------------
-  # PENDIENTE (entregable 5.3): agregar acá el despliegue automático.
-  #
-  # Para PaaS (Render): usar el deploy hook del servicio, guardado como
-  #   secreto RENDER_DEPLOY_HOOK, y llamarlo con curl.
-  #
-  # Para FaaS (Cloudflare): usar cloudflare/wrangler-action@v3 con los
-  #   secretos CLOUDFLARE_API_TOKEN y CLOUDFLARE_ACCOUNT_ID.
-  #
-  # En los dos casos: los secretos van en Settings > Secrets and variables,
-  # nunca en este archivo ni en ningún otro del repositorio.
-  # ---------------------------------------------------------------------
-
-
-despliegue:
+  despliegue:
     name: Desplegar en Render
     needs: imagen
     runs-on: ubuntu-latest
