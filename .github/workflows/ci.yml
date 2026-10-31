@@ -89,7 +89,7 @@ jobs:
           cache-to: type=gha,mode=max
 
       - name: Escanear la imagen en busca de vulnerabilidades
-        uses: aquasecurity/trivy-action@0.28.0
+        uses: aquasecurity/trivy-action@0.36.0
         with:
           image-ref: turnero:${{ github.sha }}
           format: table
