@@ -117,3 +117,16 @@ jobs:
   # En los dos casos: los secretos van en Settings > Secrets and variables,
   # nunca en este archivo ni en ningún otro del repositorio.
   # ---------------------------------------------------------------------
+
+
+despliegue:
+    name: Desplegar en Render
+    needs: imagen
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' # O cámbialo a tu rama si querés que despliegue desde otra
+    steps:
+      - name: Trigger Render Deploy
+        run: |
+          curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK }}"
+
+          
