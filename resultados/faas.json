@@ -1,0 +1,42 @@
+{
+  "medido_en": "2026-10-31T00:14:40.359Z",
+  "modelo": "faas",
+  "url": "https://turnero.unla-cloud-techs-grupo-01.workers.dev/api/turnos",
+  "configuracion": {
+    "peticiones": 200,
+    "concurrencia": 8
+  },
+  "arranque_en_frio_ms": 262.5,
+  "info_despliegue": {
+    "aplicacion": "turnero",
+    "version": "1.0.0",
+    "modelo_de_servicio": "faas",
+    "adaptador_http": "cloudflare-workers",
+    "adaptador_datos": "d1",
+    "instancia": "worker@EZE",
+    "region": "EZE",
+    "arrancado_hace_ms": 0,
+    "hora_servidor": "2026-10-31T00:14:32.678Z",
+    "grupo": "01"
+  },
+  "resumen": {
+    "peticiones": 200,
+    "exitosas": 200,
+    "fallidas": 0,
+    "tasa_error_pct": 0,
+    "min_ms": 178.7,
+    "p50_ms": 195,
+    "p95_ms": 243.5,
+    "p99_ms": 287.5,
+    "max_ms": 491.8,
+    "promedio_ms": 200.8,
+    "codigos": {
+      "200": 200
+    },
+    "instancias": [
+      "worker@EZE"
+    ],
+    "duracion_s": 5.11,
+    "peticiones_por_segundo": 39.1
+  }
+}
