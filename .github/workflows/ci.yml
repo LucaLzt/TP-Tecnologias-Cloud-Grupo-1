@@ -58,6 +58,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Convertir nombre del repositorio en minúsculas para usarlo en el registro de GitHub
+      # Esto evita error 'invalid tag "***": repository name must be lowercase' al publicar la imagen.
+      - name: Convertir nombre del repositorio en minúsculas
+        run: |
+          echo "REPO_LOWER=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+
       # Los ejecutores de GitHub comparten direcciones IP y el límite de descargas
       # anónimas de Docker Hub es de 10 por hora. Autenticarse con una cuenta
       # gratuita lo sube a 100 y evita fallos intermitentes que parecen magia.
@@ -104,8 +110,8 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}:${{ github.sha }}
-            ghcr.io/${{ github.repository }}:latest
+            ghcr.io/${{ env.REPO_LOWER }}:${{ github.sha }}
+            ghcr.io/${{ env.REPO_LOWER }}:latest
 
   # ---------------------------------------------------------------------
   # PENDIENTE (entregable 5.3): agregar acá el despliegue automático.
