@@ -38,10 +38,11 @@ jobs:
         run: npm test
 
       - name: Auditoría de dependencias
-        # No bloquea la entrega todavía: primero hay que ver qué informa.
-        # Decidir si pasa a bloqueante es parte del entregable 5.3.
+      
+        # Política de Calidad (Entregable I.2): Bloquea la integración continua si existen
+        # vulnerabilidades de severidad HIGH o CRITICAL en el paquete de producción.
         run: npm audit --audit-level=high
-        continue-on-error: true
+        continue-on-error: false
 
       - name: Buscar secretos en el historial completo
         uses: gitleaks/gitleaks-action@v2
@@ -57,6 +58,10 @@ jobs:
       packages: write
     steps:
       - uses: actions/checkout@v4
+
+      - name: Convertir nombre del repositorio en minúsculas
+        run: |
+          echo "REPO_LOWER=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
 
       # Los ejecutores de GitHub comparten direcciones IP y el límite de descargas
       # anónimas de Docker Hub es de 10 por hora. Autenticarse con una cuenta
@@ -104,8 +109,8 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}:${{ github.sha }}
-            ghcr.io/${{ github.repository }}:latest
+            ghcr.io/${{ env.REPO_LOWER }}:${{ github.sha }}
+            ghcr.io/${{ env.REPO_LOWER }}:latest
 
   # ---------------------------------------------------------------------
   # PENDIENTE (entregable 5.3): agregar acá el despliegue automático.
