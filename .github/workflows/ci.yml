@@ -38,6 +38,7 @@ jobs:
         run: npm test
 
       - name: Auditoría de dependencias
+      
         # Política de Calidad (Entregable I.2): Bloquea la integración continua si existen
         # vulnerabilidades de severidad HIGH o CRITICAL en el paquete de producción.
         run: npm audit --omit=dev --audit-level=high
@@ -58,8 +59,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Convertir nombre del repositorio en minúsculas para usarlo en el registro de GitHub
-      # Esto evita error 'invalid tag "***": repository name must be lowercase' al publicar la imagen.
       - name: Convertir nombre del repositorio en minúsculas
         run: |
           echo "REPO_LOWER=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
