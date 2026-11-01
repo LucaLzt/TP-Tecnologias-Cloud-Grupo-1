@@ -38,10 +38,10 @@ jobs:
         run: npm test
 
       - name: Auditoría de dependencias
-        # No bloquea la entrega todavía: primero hay que ver qué informa.
-        # Decidir si pasa a bloqueante es parte del entregable 5.3.
+        # Política de Calidad (Entregable I.2): Bloquea la integración continua si existen
+        # vulnerabilidades de severidad HIGH o CRITICAL en el paquete de producción.
         run: npm audit --audit-level=high
-        continue-on-error: true
+        continue-on-error: false
 
       - name: Buscar secretos en el historial completo
         uses: gitleaks/gitleaks-action@v2
