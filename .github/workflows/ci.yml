@@ -41,7 +41,7 @@ jobs:
       
         # Política de Calidad (Entregable I.2): Bloquea la integración continua si existen
         # vulnerabilidades de severidad HIGH o CRITICAL en el paquete de producción.
-        run: npm audit --audit-level=high
+        run: npm audit --omit=dev --audit-level=high
         continue-on-error: false
 
       - name: Buscar secretos en el historial completo
