@@ -65,6 +65,7 @@ spec:
         app: turnero
     spec:
       containers:
+        - name: app
           image: ghcr.io/lucalzt/tp-tecnologias-cloud-grupo-1:latest
           imagePullPolicy: Always
           envFrom:
